@@ -1,0 +1,19 @@
+name: Push actions
+on:
+  push:
+    branches:
+      - "main"
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4.1.0
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.8.1
+        with:
+          node-virsion: 18
+      - name: Install deps
+        run: npm ci
+      - name: Run tests
+        run: npm test
